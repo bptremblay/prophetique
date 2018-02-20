@@ -1,26 +1,27 @@
 {
-    "name": "prophetique",
-    "version": "1.0.0",
-    "description": "tool for prophecy generation",
-    "main": "index.js",
-    "scripts": {
-        "test": "test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/bptremblay/prophetique.git"
-    },
-    "author": "bptremblay",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/bptremblay/prophetique/issues"
-    },
-    "homepage": "https://github.com/bptremblay/prophetique#readme",
-    "dependencies": {
-        "json2csv": "^3.7.3",
-        "pizzicato": "^0.6.3",
-        "rimraf": "^2.6.1",
-        "underscore": "^1.8.3",
-        "wrench": "^1.5.9"
-    }
+  "name": "prophetique",
+  "version": "1.0.0",
+  "description": "tool for prophecy generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bptremblay/prophetique.git"
+  },
+  "author": "bptremblay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bptremblay/prophetique/issues"
+  },
+  "homepage": "https://github.com/bptremblay/prophetique#readme",
+  "dependencies": {
+    "eslint": "^4.18.0",
+    "json2csv": "^3.7.3",
+    "pizzicato": "^0.6.3",
+    "rimraf": "^2.6.1",
+    "underscore": "^1.8.3",
+    "wrench": "^1.5.9"
+  }
 }
