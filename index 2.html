@@ -23,71 +23,6 @@
         -->
     </style>
     <style>
-
-        /* The switch - the box around the slider */
-        .slider-switch {
-            position: relative;
-            display: inline-block;
-            width: 240px;
-            height: 140px;
-        }
-
-        /* Hide default HTML checkbox */
-        .slider-switch input {
-            display: none;
-        }
-
-        /* The slider */
-        .switch-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .switch-slider:before {
-            position: absolute;
-            content: "";
-            height: 137px;
-            width: 139px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .switch-slider {
-            background-color: #f35046;
-        }
-
-        input:focus + .switch-slider {
-            box-shadow: 0 0 1px #f35046;
-        }
-
-        input:checked + .switch-slider:before {
-            -webkit-transform: translateX(97.5px);
-            -ms-transform: translateX(97.5px);
-            transform: translateX(97.5px);
-        }
-
-        /* Rounded sliders */
-        .switch-slider.round {
-            border-radius: 34px;
-        }
-
-        .switch-slider.round:before {
-            border-radius: 50%;
-        }
-
-    </style>
-
-    <style>
         /*
         html {
             background-color: #dedede;
@@ -99,10 +34,8 @@
             border-style: solid;
             border-width: 1px;
             min-height: 400px;
-            margin: 1%;
-            margin-left: 7%;
-            margin-right: 14%;
-            font-size: 4em;
+            margin: 10%;
+            font-size: 2em;
             font-family: sans-serif;
         }
 
@@ -110,42 +43,23 @@
             font-weight: 600;
         }
     </style>
-    <script src="./js/lib/jquery/jquery-min.js"></script>
     <!-- Insert to your webpage before the </head> -->
+
     <script src="./Pizzicato.js"></script>
 </head>
 
 <body>
 <div align="center" class="style1">Benjamin Tremblay's Site</div>
-<p align="center"><a href="javascript:void(0);"><img src="/images/dressyourroast.jpg" border="0"></a>
-<p align="center"><a href="javascript:void(0);"><img src="/images/main.jpg" border="0"></a>
+<p align="center"><a href="#"><img src="/images/dressyourroast.jpg" border="0"></a>
+<p align="center"><a href="./interactive/index.html"><img src="/images/main.jpg" border="0"></a>
 </p>
-
-<!-- Rounded switch -->
-<p align="center"><label class="slider-switch">
-    <input id="enable-audio" type="checkbox">
-    <span class="switch-slider round"></span>
-</label></p>
 
 <div id="output"></div>
 <script src="./index.js"></script>
 <script>
 
   // Dolby format detection - taken from https://s3-us-west-1.amazonaws.com/dolbydeveloper/1.1.0/js/dolby.min.js
-  var Dolby = Dolby || {};
-  !function() {
-    'use strict';
-    Dolby.supportDDPlus = !1;
-    var e = new Audio;
-    '' != e.canPlayType('audio/mp4;codecs="ec-3"') &&
-    (-1 == navigator.userAgent.indexOf('CPU iPhone OS 9_3') && -1 == navigator.userAgent.indexOf('CPU OS 9_3') ||
-    -1 == navigator.userAgent.indexOf('Safari') || -1 == navigator.userAgent.indexOf('Version/9') ||
-    (Dolby.supportDDPlus = !0), -1 != navigator.userAgent.indexOf('Mac OS X 10_1') &&
-    -1 != navigator.userAgent.indexOf('Safari') && -1 != navigator.userAgent.indexOf('Version/9') &&
-    (Dolby.supportDDPlus = !0), -1 != navigator.userAgent.indexOf('Edge') && (Dolby.supportDDPlus = !0), -1 !=
-    navigator.userAgent.indexOf('Windows Phone 10') &&
-    (Dolby.supportDDPlus = !1)), Dolby.checkDDPlus = function() {return Dolby.supportDDPlus;};
-  }();
+  var Dolby=Dolby||{};!function(){"use strict";Dolby.supportDDPlus=!1;var e=new Audio;""!=e.canPlayType('audio/mp4;codecs="ec-3"')&&(-1==navigator.userAgent.indexOf("CPU iPhone OS 9_3")&&-1==navigator.userAgent.indexOf("CPU OS 9_3")||-1==navigator.userAgent.indexOf("Safari")||-1==navigator.userAgent.indexOf("Version/9")||(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Mac OS X 10_1")&&-1!=navigator.userAgent.indexOf("Safari")&&-1!=navigator.userAgent.indexOf("Version/9")&&(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Edge")&&(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Windows Phone 10")&&(Dolby.supportDDPlus=!1)),Dolby.checkDDPlus=function(){return Dolby.supportDDPlus}}();
   var dolbySupported = Dolby.checkDDPlus();
 
   var data = [
@@ -2206,14 +2120,14 @@
     var ext = dolbySupported ? '.m4a' : '.mp3';
     var sound = new Pizzicato.Sound('./vox/' + fileName + ext, function() {
       soundCache[fileName] = sound;
-      //// console.log('loaded', fileName);
+      //console.log('loaded', fileName);
       if (!noCB && Object.keys(soundCache).length === soundList.length) {
-        // console.log('All sounds are loaded, begin.');
+        console.log('All sounds are loaded, begin.');
         main();
       }
       else {
         if (cb) {
-          // console.log('calling callback after loading', fileName);
+          console.log('calling callback after loading', fileName);
           cb(fileName);
         }
       }
@@ -2223,9 +2137,9 @@
   function playSound(fileName, cb) {
     var sound = soundCache[fileName];
     if (sound) {
-      // console.log('playSound', fileName, sound);
+      console.log('playSound', fileName, sound);
       sound.on('stop', function() {
-        // console.log('stopped playing', fileName);
+        console.log('stopped playing', fileName);
         soundCache[fileName] = null;
         loadSound(fileName, true, cb);
         // cb(fileName)
@@ -2280,7 +2194,7 @@
   var currentSentence = [];
 
   function speak(sentence) {
-    // console.log('speaking', sentence);
+    console.log('speaking', sentence);
     sentence = sentence.split('.').join('');
     currentSentence = sentence.trim().split(' ');
     //                var len = words.length; // var index; // for (index = 0; index < len; index++) { // var word=w ords[index]; // playSound(word); // }
@@ -2296,7 +2210,7 @@
         sayNextWord();
       });
     } else {
-      // console.log('Sentence spoken.');
+      console.log('Sentence spoken.');
       window.setTimeout(function() {
         main();
       }, 1000);
@@ -2328,7 +2242,7 @@
     el.innerHTML = '<center>' + words + '</center>';
   }
 
-  var useSound = false; //window.navigator.platform !== 'iPhone';
+  var useSound = window.navigator.platform !== 'iPhone';
 
   function main() {
     if (halt) {
@@ -2345,7 +2259,7 @@
     vocab = vocab.join(',');
 
     var simple = genSimple(vocab);
-    //// console.log(simple);
+    //console.log(simple);
     if (useSound) {
       speak(simple);
     }
@@ -2355,36 +2269,13 @@
       }, 3000);
     }
     output(simple);
-    //// console.log(random(2));
+    //console.log(random(2));
     // output('end');
 
   }
 
-
-  $(function() {
-    loadAllSounds();
-    $('.switch-slider').on('click', function() {
-     // debugger;
-      var checked = $('#enable-audio').prop('checked');
-      window.setTimeout(function(){
-        if (checked) {
-          $('#enable-audio').prop('checked', false);
-          useSound = false;
-        }
-        else {
-          $('#enable-audio').prop('checked', true);
-          useSound = true;
-          playSound('hugo', function(){
-            main();
-          });
-        }
-      });
-
-    });
-  });
+  loadAllSounds();
 </script>
-
-
 </body>
 
 </html>

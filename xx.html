@@ -28,14 +28,12 @@
         .slider-switch {
             position: relative;
             display: inline-block;
-            width: 240px;
-            height: 140px;
+            width: 60px;
+            height: 34px;
         }
 
         /* Hide default HTML checkbox */
-        .slider-switch input {
-            display: none;
-        }
+        .slider-switch input {display:none;}
 
         /* The slider */
         .switch-slider {
@@ -53,8 +51,8 @@
         .switch-slider:before {
             position: absolute;
             content: "";
-            height: 137px;
-            width: 139px;
+            height: 26px;
+            width: 26px;
             left: 4px;
             bottom: 4px;
             background-color: white;
@@ -63,17 +61,17 @@
         }
 
         input:checked + .switch-slider {
-            background-color: #f35046;
+            background-color: #2196F3;
         }
 
         input:focus + .switch-slider {
-            box-shadow: 0 0 1px #f35046;
+            box-shadow: 0 0 1px #2196F3;
         }
 
         input:checked + .switch-slider:before {
-            -webkit-transform: translateX(97.5px);
-            -ms-transform: translateX(97.5px);
-            transform: translateX(97.5px);
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
         }
 
         /* Rounded sliders */
@@ -100,9 +98,9 @@
             border-width: 1px;
             min-height: 400px;
             margin: 1%;
-            margin-left: 7%;
+            margin-left:7%;
             margin-right: 14%;
-            font-size: 4em;
+            font-size: 2em;
             font-family: sans-serif;
         }
 
@@ -110,20 +108,19 @@
             font-weight: 600;
         }
     </style>
-    <script src="./js/lib/jquery/jquery-min.js"></script>
     <!-- Insert to your webpage before the </head> -->
     <script src="./Pizzicato.js"></script>
 </head>
 
 <body>
 <div align="center" class="style1">Benjamin Tremblay's Site</div>
-<p align="center"><a href="javascript:void(0);"><img src="/images/dressyourroast.jpg" border="0"></a>
-<p align="center"><a href="javascript:void(0);"><img src="/images/main.jpg" border="0"></a>
+<p align="center"><a href="#"><img src="/images/dressyourroast.jpg" border="0"></a>
+<p align="center"><a href="./interactive/index.html"><img src="/images/main.jpg" border="0"></a>
 </p>
 
 <!-- Rounded switch -->
 <p align="center"><label class="slider-switch">
-    <input id="enable-audio" type="checkbox">
+    <input type="checkbox">
     <span class="switch-slider round"></span>
 </label></p>
 
@@ -132,20 +129,7 @@
 <script>
 
   // Dolby format detection - taken from https://s3-us-west-1.amazonaws.com/dolbydeveloper/1.1.0/js/dolby.min.js
-  var Dolby = Dolby || {};
-  !function() {
-    'use strict';
-    Dolby.supportDDPlus = !1;
-    var e = new Audio;
-    '' != e.canPlayType('audio/mp4;codecs="ec-3"') &&
-    (-1 == navigator.userAgent.indexOf('CPU iPhone OS 9_3') && -1 == navigator.userAgent.indexOf('CPU OS 9_3') ||
-    -1 == navigator.userAgent.indexOf('Safari') || -1 == navigator.userAgent.indexOf('Version/9') ||
-    (Dolby.supportDDPlus = !0), -1 != navigator.userAgent.indexOf('Mac OS X 10_1') &&
-    -1 != navigator.userAgent.indexOf('Safari') && -1 != navigator.userAgent.indexOf('Version/9') &&
-    (Dolby.supportDDPlus = !0), -1 != navigator.userAgent.indexOf('Edge') && (Dolby.supportDDPlus = !0), -1 !=
-    navigator.userAgent.indexOf('Windows Phone 10') &&
-    (Dolby.supportDDPlus = !1)), Dolby.checkDDPlus = function() {return Dolby.supportDDPlus;};
-  }();
+  var Dolby=Dolby||{};!function(){"use strict";Dolby.supportDDPlus=!1;var e=new Audio;""!=e.canPlayType('audio/mp4;codecs="ec-3"')&&(-1==navigator.userAgent.indexOf("CPU iPhone OS 9_3")&&-1==navigator.userAgent.indexOf("CPU OS 9_3")||-1==navigator.userAgent.indexOf("Safari")||-1==navigator.userAgent.indexOf("Version/9")||(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Mac OS X 10_1")&&-1!=navigator.userAgent.indexOf("Safari")&&-1!=navigator.userAgent.indexOf("Version/9")&&(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Edge")&&(Dolby.supportDDPlus=!0),-1!=navigator.userAgent.indexOf("Windows Phone 10")&&(Dolby.supportDDPlus=!1)),Dolby.checkDDPlus=function(){return Dolby.supportDDPlus}}();
   var dolbySupported = Dolby.checkDDPlus();
 
   var data = [
@@ -2328,7 +2312,7 @@
     el.innerHTML = '<center>' + words + '</center>';
   }
 
-  var useSound = false; //window.navigator.platform !== 'iPhone';
+  var useSound = window.navigator.platform !== 'iPhone';
 
   function main() {
     if (halt) {
@@ -2360,28 +2344,7 @@
 
   }
 
-
-  $(function() {
-    loadAllSounds();
-    $('.switch-slider').on('click', function() {
-     // debugger;
-      var checked = $('#enable-audio').prop('checked');
-      window.setTimeout(function(){
-        if (checked) {
-          $('#enable-audio').prop('checked', false);
-          useSound = false;
-        }
-        else {
-          $('#enable-audio').prop('checked', true);
-          useSound = true;
-          playSound('hugo', function(){
-            main();
-          });
-        }
-      });
-
-    });
-  });
+  loadAllSounds();
 </script>
 
 
