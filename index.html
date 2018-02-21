@@ -2226,6 +2226,7 @@
       // console.log('playSound', fileName, sound);
       sound.on('stop', function() {
         // console.log('stopped playing', fileName);
+        soundCache[fileName].disconnect();
         soundCache[fileName] = null;
         loadSound(fileName, true, cb);
         // cb(fileName)
@@ -2375,7 +2376,7 @@
           $('#enable-audio').prop('checked', true);
           useSound = true;
           playSound('hugo', function(){
-            main();
+            //main();
           });
         }
       });
